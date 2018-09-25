@@ -1,0 +1,27 @@
+.btn.btn-primary{
+    color: white;
+}
+
+.btn-link {
+    font-weight: 400;
+    color:white;
+    border-radius: 0;
+}
+
+.invalid-feedback{
+    color: red;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: white;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: white;
+}
