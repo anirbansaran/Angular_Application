@@ -5,6 +5,7 @@ import { first } from 'rxjs/operators';
 
 import { AlertService, AuthenticationService } from '../_services';
 
+
 @Component({
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
@@ -51,6 +52,7 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    this.alertService.success('Login successful', true);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

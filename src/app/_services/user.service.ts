@@ -19,7 +19,10 @@ export class UserService {
     register(user: User) {
         return this.http.post(`${environment.apiUrl}/users/register`, user);
     }
-
+    
+    forgotpassword(email:string){
+        return this.http.post(`${environment.apiUrl}/users/forgotpassword`, email);
+    }
     update(user: User) {
         return this.http.put(`${environment.apiUrl}/users/` + user.id, user);
     }

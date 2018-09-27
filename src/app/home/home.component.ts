@@ -1,31 +1,27 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { Dashboard } from '../_models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { User } from '../_models';
-import { UserService } from '../_services';
+import { AlertService, UserService } from '../_services';
 
-@Component({templateUrl: 'home.component.html'})
+@Component({
+    templateUrl: 'home.component.html',
+    styleUrls: ['./home.component.scss']
+})
 export class HomeComponent implements OnInit {
-    currentUser: User;
-    users: User[] = [];
+    currentUser: Dashboard;
+    users: Dashboard[] = [];
 
-    constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private userService: UserService,
+        private alertservice: AlertService) {}
 
     ngOnInit() {
-        this.loadAllUsers();
+        
     }
-
-    deleteUser(id: number) {
-        this.userService.delete(id).pipe(first()).subscribe(() => { 
-            this.loadAllUsers() 
-        });
-    }
-
-    private loadAllUsers() {
-        this.userService.getAll().pipe(first()).subscribe(users => { 
-            this.users = users; 
-        });
-    }
+  
 }
