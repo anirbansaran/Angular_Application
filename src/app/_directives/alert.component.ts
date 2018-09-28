@@ -9,29 +9,21 @@ import { AlertService } from '../_services';
     styleUrls: ['./alert.component.scss']
 })
 
-export class AlertComponent implements OnInit, OnDestroy {
+export class AlertComponent implements OnInit {
     private subscription: Subscription;
     message: any;
-    public showNotification: boolean;
-
+    isClose = false;
     constructor(private alertService: AlertService) { 
-        this.showNotification = true;
-            setInterval(() => {
-                this.showNotification = true;
-            }, 30);
+        
     }
 
     ngOnInit() {
-        this.subscription = this.alertService.getMessage().subscribe(message => { 
-            this.message = message; 
-        });
+        this.message =  this.alertService.getMessage();
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
     
-    public onCloseClick(): void {
-        this.showNotification = false;
+    public onCloseClick() {
+
+        this.isClose = true;
     }
 }

@@ -6,7 +6,7 @@ import { Observable, Subject } from 'rxjs';
 export class AlertService {
     private subject = new Subject<any>();
     private keepAfterNavigationChange = false;
-    
+    messageObj = {};
 
     constructor(private router: Router) {
         // clear alert message on route change
@@ -26,16 +26,17 @@ export class AlertService {
 
     success(message: string, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
-        this.subject.next({ type: 'success', text: message });
+        this.messageObj = { "type": 'success', text: message };
     }
 
     error(message: string, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
-        this.subject.next({ type: 'error', text: message });
+        //this.subject.next({ type: 'error', text: message });
+        this.messageObj = { "type": 'error', text: message };
     }
 
-    getMessage(): Observable<any> {
-        return this.subject.asObservable();
+    getMessage() {
+        return this.messageObj;
     }
 
     

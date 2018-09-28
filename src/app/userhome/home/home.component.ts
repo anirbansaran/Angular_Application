@@ -1,17 +1,19 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Dashboard } from '../_models';
+import { Dashboard } from '../../_models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { AlertService, UserService } from '../_services';
+import { AlertService, UserService } from '../../_services';
 
 @Component({
-    templateUrl: 'home.component.html',
-    styleUrls: ['./home.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-    currentUser: Dashboard;
+  currentUser: Dashboard;
     users: Dashboard[] = [];
 
     constructor(
@@ -20,8 +22,7 @@ export class HomeComponent implements OnInit {
         private userService: UserService,
         private alertservice: AlertService) {}
 
-    ngOnInit() {
-        
-    }
-  
+  ngOnInit() {
+  }
+
 }

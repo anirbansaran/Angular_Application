@@ -11,6 +11,7 @@ import { AlertService, AuthenticationService } from '../_services';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+    ismsg = false;
     loginForm: FormGroup;
     loading = false;
     submitted = false;
@@ -53,11 +54,23 @@ export class LoginComponent implements OnInit {
             .subscribe(
                 data => {
                     this.alertService.success('Login successful', true);
-                    this.router.navigate([this.returnUrl]);
+                    this.ismsg = true;
+                    setTimeout(() => {
+                        this.ismsg = false;
+                    }, 8000);
+                    this.router.navigate(['/home']);
                 },
                 error => {
+                    
                     this.alertService.error(error);
+                    this.ismsg = true;
                     this.loading = false;
+                    console.log(error);
+                    console.log(this.ismsg);
+                    setTimeout(() => {
+                        this.ismsg = false;
+                    }, 8000);
+               
                 });
     }
 }
